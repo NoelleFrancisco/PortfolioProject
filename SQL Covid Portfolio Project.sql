@@ -1,49 +1,49 @@
---Select *
---From PortfolioProject..CovidDeaths
---Where continent is not null
---Order by 3,4
+Select *
+From PortfolioProject..CovidDeaths
+Where continent is not null
+Order by 3,4
 
---Select *
---From PortfolioProject..CovidVaccinations
---Order by 3,4
+Select *
+From PortfolioProject..CovidVaccinations
+Order by 3,4
 
  --Select Data that we are going to be using
---Select Location, date, total_cases, new_cases, total_deaths, population
---From PortfolioProject..CovidDeaths
---Order by 1,2
+Select Location, date, total_cases, new_cases, total_deaths, population
+From PortfolioProject..CovidDeaths
+Order by 1,2
 
 -- Looking at Total Cases vs Total Deaths
 -- Shows the likelihood of dying from Covid diagnosis per country
---Select Location, date, total_cases, total_deaths, (total_deaths/total_cases) * 100 as DeathPercentage
---From PortfolioProject..CovidDeaths
---Where Location like '%states%'
---Order by 1,2
+Select Location, date, total_cases, total_deaths, (total_deaths/total_cases) * 100 as DeathPercentage
+From PortfolioProject..CovidDeaths
+Where Location like '%states%'
+Order by 1,2
 
 -- Looking at Total Cases vs Population
---Select Location, date, population, total_cases, (total_cases/population) * 100 as CasePercentage
---From PortfolioProject..CovidDeaths
-----Where location like '%states'
---Order by 1,2
+Select Location, date, population, total_cases, (total_cases/population) * 100 as CasePercentage
+From PortfolioProject..CovidDeaths
+Where location like '%states'
+Order by 1,2
 
 -- Looking at countries with highest infection rate compared to population
---Select Location, population, MAX(total_cases) as HighestInfectionCount, MAX((total_cases/population)) * 100 as PercentPopulationInfected
---From PortfolioProject..CovidDeaths
---Group by Location, population
---Order by PercentPopulationInfected desc
+Select Location, population, MAX(total_cases) as HighestInfectionCount, MAX((total_cases/population)) * 100 as PercentPopulationInfected
+From PortfolioProject..CovidDeaths
+Group by Location, population
+Order by PercentPopulationInfected desc
 
 -- Showing Countries with highest Death Count per Population
---Select Location, MAX(cast(total_deaths as int)) as TotalDeathCount
---From PortfolioProject..CovidDeaths
---Where continent is not null
---Group by Location
---Order by TotalDeathCount desc
+Select Location, MAX(cast(total_deaths as int)) as TotalDeathCount
+From PortfolioProject..CovidDeaths
+Where continent is not null
+Group by Location
+Order by TotalDeathCount desc
 
 -- Let's Break Things Down by Continent
---Select continent, MAX(cast(total_deaths as int)) as TotalDeathCount
---From PortfolioProject..CovidDeaths
---Where continent is not null
---Group by continent
---Order by TotalDeathCount desc
+Select continent, MAX(cast(total_deaths as int)) as TotalDeathCount
+From PortfolioProject..CovidDeaths
+Where continent is not null
+Group by continent
+Order by TotalDeathCount desc
 
 -- Showing the continents with the highest death count per population
 Select continent, MAX(cast(total_deaths as int)) as TotalDeathCount
